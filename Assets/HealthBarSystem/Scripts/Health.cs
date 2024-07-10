@@ -9,6 +9,9 @@ public class Health : MonoBehaviour
     [SerializeField][Min(Min + 1)] private float _max;
     [SerializeField][Min(Min)] private float _current;
 
+    [SerializeField] private DamageButton _damageButton;
+    [SerializeField] private HealButton _healButton;
+
     public event Action<float> Changed;
 
     public float Max => _max;
@@ -18,6 +21,18 @@ public class Health : MonoBehaviour
     {
         if (_current > _max)
             _current = _max;
+    }
+
+    private void OnEnable()
+    {
+        _damageButton.Clicked += Decrease;
+        _healButton.Clicked += Increase;
+    }
+
+    private void OnDisable()
+    {
+        _damageButton.Clicked -= Decrease;
+        _healButton.Clicked -= Increase;
     }
 
     public void Decrease(float amount)

@@ -7,7 +7,7 @@ using System.Threading;
 public class SmoothHealthBar : SliderHealthBar
 {
     private const float MinDelta = 0.1f;
-    private const float MaxDelta = 50f;
+    private const float MaxDelta = 1.0f;
     
     private CancellationTokenSource _tokenSource;
     private UniTask _currentTask;
